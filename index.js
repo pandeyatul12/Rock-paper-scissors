@@ -12,26 +12,30 @@ function computerPlay(random) {
 }
 let playerPoints = 0
 let computerPoints = 0
-let body = document.querySelector("body")
+let body = document.querySelector("body");
+const rockSelection = document.querySelector("#rock");
+const paperSelection = document.querySelector("#paper");
+const scissorSelection = document.querySelector("#scissor");
 
 function playRound(playerSelection, computerSelection){
-    if((playerPoints + computerPoints) !== 5){
+    if((playerPoints + computerPoints) <= 5){
     let result = document.createElement('div');
-    result.innerHTML = " "
+
     if(playerSelection === "rock" ){
        if(computerSelection === "paper") {
             computerPoints +=1;
-            result.innerHTML = "You lose! Paper Beats Rock!!";
+            result.textContent = " "
+            result.textContent = "You lose! Paper Beats Rock!!";
             body.appendChild(result);
             return result ;
        } else if(computerSelection === "scissor")
        {
             playerPoints +=1;
-            result.innerHTML = "You win! Rock Beats Scissor!!";
+            result.textContent = "You win! Rock Beats Scissor!!";
             body.appendChild(result);
             return result;
        } else {
-            result.innerHTML = "It's a tie!!";
+            result.textContent = "It's a tie!!";
             body.appendChild(result);
             return result;
        }
@@ -55,62 +59,79 @@ function playRound(playerSelection, computerSelection){
            }
      } else  if(playerSelection === "scissor" ) {
             if(computerSelection === "paper") {
-                playerPoints +=1;
+            playerPoints +=1;
             result.textContent = "You win! Scissor Beats Paper!!";
             body.appendChild(result);
             return result;
             } else if(computerSelection === "rock")
             {
-                computerPoints +=1;
-                result.textContent = "You lose! Rock Beats Scissor!!";
+            computerPoints +=1;
+            result.textContent = "You lose! Rock Beats Scissor!!";
             body.appendChild(result);
             return result;
             } else {
-                result.textContent = "It's a tie!!";
-                body.appendChild(result);
-               return result;
+            result.textContent = "It's a tie!!";
+            body.appendChild(result);
+            return result;
                }       
         } 
+    } else if((playerPoints + computerPoints) == 6) {
+           finalResult(playerPoints, computerPoints);
+           computerPoints++;
     } 
 }
 
 function game() {
-    {
-        const rockSelection = document.querySelector("#rock");
-        const paperSelection = document.querySelector("#paper");
-        const scissorSelection = document.querySelector("#scissor");
+     
+    {   
         let computerSelection = 0;
         let playerSelection = " ";
         let points = document.createElement('div');
         rockSelection.addEventListener('click', e => 
         {   
+            computerSelection = 0;
             computerSelection = computerPlay(random);
             playerSelection = e.target.id;
             playRound(playerSelection, computerSelection);
             points.innerHTML = `Player Points: ${playerPoints} Computer Points: ${computerPoints}` 
-            body.appendChild(points)
-            return points;
+            body.appendChild(points);
+            return ;
             }
             );
         paperSelection.addEventListener('click', e => 
             {
+            computerSelection = 0;
             computerSelection = (computerPlay(random));
             playerSelection = e.target.id;
             playRound(playerSelection, computerSelection)
             points.innerHTML = `Player Points: ${playerPoints} Computer Points: ${computerPoints}` 
             body.appendChild(points)
-            return points;}
+            return ;}
             );  
         scissorSelection.addEventListener('click', e => 
             {
+            computerSelection = 0;
             computerSelection = (computerPlay(random));
             playerSelection = e.target.id;
             playRound(playerSelection, computerSelection)
             points.innerHTML = `Player Points: ${playerPoints} Computer Points: ${computerPoints}` 
-            body.appendChild(points)
-            return points;}
+            body.appendChild(points);
+            return ;}
             );  
-            
-        } 
+           }
     }
+
+function finalResult(playerPoints, computerPoints){
+    let finalRes = document.createElement('div');
+    if(playerPoints>computerPoints){
+        finalRes.innerText = "Yipeeeeeeeee!! You Won"; 
+            body.appendChild(finalRes);
+            return;
+    } else {
+        finalRes.innerText = "Sorry to say!! You lost"; 
+        body.appendChild(finalRes);
+        return;
+    }
+}
+
 game()

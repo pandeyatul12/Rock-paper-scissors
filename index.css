@@ -1,4 +1,18 @@
 button {
-  width: auto;
-  font-size: 50px;
+  margin: 10px auto;
+  font-size: 100px;
+  align-items: center;
+}
+
+body {
+  text-align: center;
+  margin: 0 auto;
+}
+
+#rock {
+  text-align: center;
+}
+
+#paper {
+  text-align: center;
 }
