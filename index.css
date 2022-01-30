@@ -1,7 +1,11 @@
 button {
-  margin: 10px auto;
+  margin: 15px auto;
   font-size: 100px;
   align-items: center;
+  border: none;
+  border-radius: 50%;
+  width: auto;
+  padding-bottom: 15px;
 }
 
 body {
@@ -15,4 +19,8 @@ body {
 
 #paper {
   text-align: center;
+}
+
+body {
+  background-image: url("./bg.png");
 }

@@ -20,7 +20,6 @@ const scissorSelection = document.querySelector("#scissor");
 function playRound(playerSelection, computerSelection){
     if((playerPoints + computerPoints) <= 5){
     let result = document.createElement('div');
-
     if(playerSelection === "rock" ){
        if(computerSelection === "paper") {
             computerPoints +=1;
